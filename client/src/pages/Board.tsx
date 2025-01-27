@@ -9,7 +9,7 @@ import { ApiMessage } from '../interfaces/ApiMessage';
 
 import auth from '../utils/auth';
 
-const boardStates = ['Todo', 'In Progress', 'Done'];
+const boardStates : string[] = ['Todo', 'In Progress', 'Done'];
 
 const Board = () => {
   const [tickets, setTickets] = useState<TicketData[]>([]);
@@ -35,7 +35,7 @@ const Board = () => {
   const deleteIndvTicket = async (ticketId: number) : Promise<ApiMessage> => {
     try {
       const data = await deleteTicket(ticketId);
-      fetchTickets();
+      await fetchTickets();
       return data;
     } catch (err) {
       return Promise.reject(err);
@@ -71,8 +71,8 @@ const Board = () => {
               <Link to='/create' >New Ticket</Link>
             </button>
             <div className='board-display'>
-              {boardStates.map((status) => {
-                const filteredTickets = tickets.filter(ticket => ticket.status === status);
+              {boardStates.map((status : string) => {
+                const filteredTickets : TicketData[] = tickets.filter(ticket => ticket.status === status);
                 return (
                   <Swimlane 
                     title={status} 

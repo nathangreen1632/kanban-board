@@ -14,7 +14,7 @@ const Swimlane = ({ title, tickets, deleteTicket }: SwimlaneProps) => {
       case 'Todo':
         return 'swim-lane todo';
       case 'In Progress':
-        return 'swim-lane inprogress';
+        return 'swim-lane in progress';
       case 'Done':
         return 'swim-lane done';
       default:

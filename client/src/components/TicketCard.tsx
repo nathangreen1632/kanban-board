@@ -15,7 +15,7 @@ const TicketCard = ({ ticket, deleteTicket }: TicketCardProps) => {
     const ticketId = Number(event.currentTarget.value);
     if (!isNaN(ticketId)) {
       try {
-        const data = await deleteTicket(ticketId);
+        const data : ApiMessage = await deleteTicket(ticketId);
         return data;
       } catch (error) {
         console.error('Failed to delete ticket:', error);

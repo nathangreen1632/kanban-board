@@ -36,7 +36,7 @@ class AuthService {
 
   login(idToken: string): void {
     localStorage.setItem('auth_token', idToken);
-    window.location.href = '/home';
+    window.location.href = '/';
   }
 
   logout(): void {

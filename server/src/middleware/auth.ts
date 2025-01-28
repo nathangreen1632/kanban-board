@@ -22,7 +22,7 @@ export const authenticateToken = (req: CustomRequest, res: Response, next: NextF
   }
 
   try {
-    const secretKey: string | undefined = process.env.JWT_SECRET_KEY;
+    const secretKey: string | undefined = process.env.JWT_SECRET_TOKEN;
     console.warn(secretKey);
     if (!secretKey) {
       return res.status(500).json({ message: 'Server error. Secret key not configured.' });

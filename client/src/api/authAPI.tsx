@@ -2,7 +2,7 @@ import { UserLogin } from "../interfaces/UserLogin";
 
 const login = async (userInfo: UserLogin) => {
   try {
-    const response : Response = await fetch('http://localhost:5000/api/auth/login', {
+    const response : Response = await fetch('/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

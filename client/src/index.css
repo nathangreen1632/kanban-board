@@ -10,12 +10,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* webkit solution */
 ::-webkit-input-placeholder {
     text-align:center;
 }
 
-/* mozilla solution */
 input:-moz-placeholder {
     text-align:right;
 }
@@ -25,6 +23,7 @@ a {
     color: #D81E5B;
     text-decoration: inherit;
 }
+
 a:hover {
     color: #535bf2;
 }
@@ -57,6 +56,7 @@ button {
     cursor: pointer;
     transition: border-color 0.25s;
 }
+
 button:hover {
     border-color: #646cff;
 }
@@ -65,12 +65,11 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-main {
-    color: black;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: row;
+table {
+    width: 80vw;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0 auto;
 }
 
 tr {
@@ -83,20 +82,19 @@ tbody tr:nth-child(odd) {
     background-color: #333333;
 }
 
-/* Navbar Content */
 .nav {
     background-color: black;
     color: #FDF0D5;
-    width: 50%; /* Adjust width */
-    max-width: 700px; /* Prevents it from stretching too much */
+    width: 50%;
+    max-width: 700px;
     padding: 20px;
     text-align: center;
-    border-radius: 10px; /* Soft rounded edges */
+    border-radius: 10px;
     position: absolute;
-    top: 80px; /* Moves it about 2 inches from the top */
+    top: 80px;
     left: 50%;
-    transform: translateX(-50%); /* Centers it horizontally */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Adds slight shadow */
+    transform: translateX(-50%);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav ul {
@@ -110,7 +108,7 @@ tbody tr:nth-child(odd) {
     font-weight: bold;
     color: #FDF0D5;
     display: block;
-    margin-bottom: 10px; /* Creates space for the button below */
+    margin-bottom: 10px;
 }
 
 .nav-title a {
@@ -119,9 +117,9 @@ tbody tr:nth-child(odd) {
 
 .nav-item {
     display: flex;
-    justify-content: center; /* Center horizontally */
+    justify-content: center;
     align-items: center;
-    width: 90%; /* Ensures it spans full width of the navbar */
+    width: 90%;
 }
 
 .nav-item button {
@@ -153,7 +151,7 @@ tbody tr:nth-child(odd) {
 }
 
 .board {
-    margin-top: 190px; /* Adjust this value to push the board down */
+    margin-top: 190px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -171,7 +169,7 @@ tbody tr:nth-child(odd) {
     max-width: 1200px;
     height: 100%;
     padding: 10px 0;
-    gap: 30px; /* Space between columns */
+    gap: 30px;
     box-sizing: border-box;
 }
 
@@ -179,7 +177,7 @@ tbody tr:nth-child(odd) {
     flex: 2;
     max-width: 30%;
     min-width: 280px;
-    height: 100%; /* Ensures they fit inside the board */
+    height: 100%;
     padding: 15px;
     border-radius: 8px;
     display: flex;
@@ -304,17 +302,15 @@ tbody tr:nth-child(odd) {
 }
 
 @media (max-width: 1024px) and (min-width: 901px) {
-    /* Adjust Navbar */
     .nav {
         width: 80%;
         padding: 20px;
         position: relative;
     }
 
-    /* Fix "New Ticket" button placement */
     #create-ticket-link {
         display: block;
-        margin: 20px auto 0 auto; /* Space below navbar */
+        margin: 0 auto 0 auto;
         text-align: center;
         width: auto;
         padding: 12px 24px;
@@ -323,10 +319,9 @@ tbody tr:nth-child(odd) {
         z-index: 10;
     }
 
-    /* Ensure board layout is correct */
     .board-display {
         display: flex;
-        flex-wrap: nowrap; /* Ensures all 3 columns fit */
+        flex-wrap: nowrap;
         justify-content: space-around;
         width: 100%;
         max-width: 95vw;
@@ -335,21 +330,95 @@ tbody tr:nth-child(odd) {
 
     .swimlane {
         flex: 1;
-        max-width: 30%; /* Ensures 3 swimlanes */
+        max-width: 30%;
         min-width: 280px;
     }
 }
 
+@media (min-width: 751px) and (max-width: 900px) {
+    .nav {
+        width: 40%;
+    }
+
+    .board-display {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 50%;
+        gap: 25px;
+    }
+
+    .swimlane {
+        flex: 1;
+        max-width: 30%;
+    }
+
+    .form {
+        margin: 30vh auto;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 750px) {
+    .nav {
+        width: 40%;
+        padding: 20px;
+    }
+
+    .board-display {
+        margin: 5vh auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .swimlane {
+        flex: 1;
+        max-width: 40%;
+    }
+
+}
+
+@media (min-width: 375px) and (max-width: 600px) {
+    .nav {
+        width: 60%;
+        padding: 20px;
+    }
+
+    .board-display {
+        margin: 5vh auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .swimlane {
+        flex: 1;
+        max-width: 40%;
+    }
+
+   #create-ticket-link {
+       display: block;
+       margin: 13vh 0 0 0;
+       text-align: center;
+       width: 70%;
+       padding: 12px 20px;
+       font-size: 1.1rem;
+       position: relative;
+       z-index: 10;
+    }
+
+    .form {
+        margin: 30vh auto;
+    }
+}
 
 @media (max-width: 430px) and (min-width: 375px) {
-    /* Adjust Navbar */
     .nav {
         width: 95%;
         padding: 15px;
         position: relative;
     }
 
-    /* Fix "New Ticket" button placement */
     #create-ticket-link {
         display: block;
         margin: 15px auto;
@@ -361,7 +430,6 @@ tbody tr:nth-child(odd) {
         z-index: 10;
     }
 
-    /* Adjust Board Layout */
     .board-display {
         display: flex;
         flex-direction: column; /* Stacks items */
@@ -372,11 +440,53 @@ tbody tr:nth-child(odd) {
     }
 
     .swimlane {
-        width: 90%; /* Full width */
+        width: 90%;
         min-width: 300px;
     }
 
-    /* Improve button & form usability */
+    button {
+        font-size: 1rem;
+        padding: 10px 18px;
+    }
+
+    .form input,
+    .form textarea {
+        width: 100%;
+    }
+}
+
+@media (max-width: 374px) {
+    .nav {
+        width: 95%;
+        padding: 15px;
+        position: relative;
+    }
+
+    #create-ticket-link {
+        display: block;
+        margin: 15px auto;
+        text-align: center;
+        width: 80%;
+        padding: 12px 20px;
+        font-size: 1.1rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    .board-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 95vw;
+        gap: 15px;
+    }
+
+    .swimlane {
+        width: 90%;
+        min-width: 300px;
+    }
+
     button {
         font-size: 1rem;
         padding: 10px 18px;

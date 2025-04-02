@@ -34,7 +34,7 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="bg-neutral-500 shadow-md rounded-lg p-8 w-full max-w-md space-y-5"
       >
-        <h1 className="text-2xl font-bold text-center text-gray-100">Login</h1>
+        <h1 className="text-2xl font-bold text-center text-white">Login</h1>
 
         <div>
           <label htmlFor="username" className="block text-sm font-medium text-white mb-1">
@@ -46,7 +46,7 @@ const Login = () => {
             name="username"
             value={loginData.username || ''}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-rose-500"
+            className="w-full bg-white border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-rose-500"
             required
           />
         </div>
@@ -61,7 +61,7 @@ const Login = () => {
             name="password"
             value={loginData.password || ''}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-rose-500"
+            className="w-full bg-white border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-rose-500"
             required
           />
         </div>

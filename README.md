@@ -92,7 +92,6 @@ ___
 
 ### **Deployment:**
 <br>&nbsp; [![Render](https://img.shields.io/badge/Render-333?style=for-the-badge&logo=render&logoColor=white)](https://render.com)
-<br>&nbsp; [![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com)
 
 <div style="text-align: right;">
   <a href="#top">

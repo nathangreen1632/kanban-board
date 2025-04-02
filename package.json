@@ -15,8 +15,7 @@
     "build": "cd client && npm run build && cd ../server && npm run build",
     "seed": "npm run seed",
     "render-build": "npm run full-build",
-    "full-build": "cd client && npm run build && cd ../server && npm run build && npm run seed"
-
+    "full-build": "npm run client:build && npm run server"
   },
   "keywords": [],
   "author": "",

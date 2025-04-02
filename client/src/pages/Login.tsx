@@ -2,7 +2,6 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import Auth from '../utils/auth';
 import { login } from "../api/authAPI";
 
-
 const Login = () => {
   const [loginData, setLoginData] = useState({
     username: '',
@@ -27,33 +26,55 @@ const Login = () => {
     } catch (error) {
       console.error('Login error:', error);
     }
-  }
+  };
 
   return (
-    <div className='container'>
-      <form className='form' onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label >Username{' '}
-        <input 
-          type='text'
-          name='username'
-          value={loginData.username || ''}
-          onChange={handleChange}
-        />
-        </label>
-      <label>Password{' '}
-        <input 
-          type='password'
-          name='password'
-          value={loginData.password || ''}
-          onChange={handleChange}
-        />
-      </label>
-        <button type='submit'>Submit Form</button>
+    <div className="flex justify-center items-center min-h-[1000px] px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-neutral-500 shadow-md rounded-lg p-8 w-full max-w-md space-y-5"
+      >
+        <h1 className="text-2xl font-bold text-center text-gray-100">Login</h1>
+
+        <div>
+          <label htmlFor="username" className="block text-sm font-medium text-white mb-1">
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={loginData.username || ''}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-rose-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-white mb-1">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={loginData.password || ''}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-rose-500"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-neutral-300 text-black font-medium py-2 px-4 rounded-md hover:bg-black hover:text-white transition"
+        >
+          Submit
+        </button>
       </form>
     </div>
-    
-  )
+  );
 };
 
 export default Login;

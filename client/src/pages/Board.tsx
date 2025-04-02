@@ -33,7 +33,9 @@ const Board = () => {
     }
   };
 
-  const deleteIndvTicket = async (ticketId: number): Promise<ApiResponse<ApiMessage>> => {
+  const deleteIndvTicket = async (
+    ticketId: number
+  ): Promise<ApiResponse<ApiMessage>> => {
     try {
       const result = await deleteTicket(ticketId);
       await fetchTickets();
@@ -66,15 +68,22 @@ const Board = () => {
   return (
     <>
       {!loginCheck ? (
-        <div className="login-notice">
-          <h1>Login to create & view tickets</h1>
+        <div className="flex items-center justify-center w-full min-h-[1000px]">
+          <h1 className="text-5xl font-semibold text-center">
+            Login to create & view tickets
+          </h1>
         </div>
       ) : (
-        <div className="board">
-          <button type="button" id="create-ticket-link">
-            <Link to="/create">New Ticket</Link>
-          </button>
-          <div className="board-display">
+        <div className="w-full max-w-screen-xl mx-auto px-4 mt-24">
+          <div className="flex justify-end mb-4">
+            <Link
+              to="/create"
+              className="bg-black text-white px-5 py-2 rounded-md text-sm hover:bg-neutral-600 hover:text-white transition"
+            >
+              New Ticket
+            </Link>
+          </div>
+          <div className="flex flex-wrap justify-between gap-6">
             {boardStates.map((status: string) => {
               const filteredTickets: TicketData[] = tickets.filter(
                 (ticket) => ticket.status === status

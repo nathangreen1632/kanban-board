@@ -1,6 +1,6 @@
 # <strong><span id="top"> Krazy Kanban Board </span></strong>
 
-![Tech Stack](https://img.shields.io/badge/stack-Node.js%20%7C%20React%20%7C%20PostgreSQL-blue)
+![Tech Stack](https://img.shields.io/badge/stack-Node.js%20%7C%20Express.js%20%7C%20React%20%7C%20PostgreSQL-blue)
 
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
 

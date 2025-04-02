@@ -12,10 +12,10 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "client:build": "cd client && npm run build",
     "client:dev": "cd client && npm run dev",
-    "build": "cd client && npm run build",
-    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "seed": "npm run seed",
     "render-build": "npm run full-build",
-    "full-build": "cd client && npm install && npm run build && cd ../server && npm install && npm run build && npm run seed"
+    "full-build": "cd client && npm run build && cd ../server && npm run build && npm run seed"
 
   },
   "keywords": [],

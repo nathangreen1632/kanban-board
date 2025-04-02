@@ -2,7 +2,8 @@ import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { retrieveTicket, updateTicket } from '../api/ticketAPI';
-import { TicketData } from '../interfaces/TicketData';
+import { TicketData } from '../interfaces/TicketData.ts';
+import { ApiResponse } from '../interfaces/ApiResponse';
 
 const EditTicket = () => {
   const [ticket, setTicket] = useState<TicketData | undefined>();
@@ -10,29 +11,38 @@ const EditTicket = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const fetchTicket = async (ticketId: TicketData) => {
+  const fetchTicket = async (ticketId: TicketData): Promise<void> => {
     try {
-      const data = await retrieveTicket(ticketId.id);
-      setTicket(data);
+      const result: ApiResponse<TicketData> = await retrieveTicket(ticketId.id);
+      if (result.success && result.data) {
+        setTicket(result.data);
+      } else {
+        console.warn('Ticket not found:', result.message);
+      }
     } catch (err) {
       console.error('Failed to retrieve ticket:', err);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchTicket(state);
-  }, []);
+    (async () => {
+      await fetchTicket(state);
+    })();
+  }, [state]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
-    if (ticket && ticket.id !== null){
-      updateTicket(ticket.id, ticket);
-      navigate('/');
-    }
-    else{
+    if (ticket && ticket.id !== null) {
+      const result = await updateTicket(ticket.id, ticket);
+      if (result.success) {
+        navigate('/');
+      } else {
+        console.error('Update failed:', result.message);
+      }
+    } else {
       console.error('Ticket data is undefined.');
     }
-  }
+  };
 
   const handleTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -45,45 +55,41 @@ const EditTicket = () => {
   };
 
   return (
-    <>
-      <div className='container'>
-        {
-          ticket ? (
-            <form className='form' onSubmit={handleSubmit}>
-              <h1>Edit Ticket</h1>
-              <label htmlFor='tName'>Ticket Name</label>
-              <textarea
-                id='tName'
-                name='name'
-                value={ticket.name || ''}
-                onChange={handleTextAreaChange}
-                />
-              <label htmlFor='tStatus'>Ticket Status</label>
-              <select
-                name='status'
-                id='tStatus'
-                value={ticket.status || ''}
-                onChange={handleChange}
-              >
-                <option  value='Todo'>Todo</option>
-                <option  value='In Progress'>In Progress</option>
-                <option  value='Done'>Done</option>
-            </select>
-            <label htmlFor='tDescription'>Ticket Description</label>
-              <textarea
-                id='tDescription'
-                name='description'
-                value={ticket.description || ''}
-                onChange={handleTextAreaChange}
-              />
-              <button type='submit'>Submit Form</button>
-            </form>
-          ) : (
-            <div>Issues fetching ticket</div>
-          )
-        }
-      </div>  
-    </>
+    <div className="container">
+      {ticket ? (
+        <form className="form" onSubmit={handleSubmit}>
+          <h1>Edit Ticket</h1>
+          <label htmlFor="tName">Ticket Name</label>
+          <textarea
+            id="tName"
+            name="name"
+            value={ticket.name ?? ''}
+            onChange={handleTextAreaChange}
+          />
+          <label htmlFor="tStatus">Ticket Status</label>
+          <select
+            name="status"
+            id="tStatus"
+            value={ticket.status ?? ''}
+            onChange={handleChange}
+          >
+            <option value="Todo">Todo</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+          </select>
+          <label htmlFor="tDescription">Ticket Description</label>
+          <textarea
+            id="tDescription"
+            name="description"
+            value={ticket.description ?? ''}
+            onChange={handleTextAreaChange}
+          />
+          <button type="submit">Submit Form</button>
+        </form>
+      ) : (
+        <div>Issues fetching ticket</div>
+      )}
+    </div>
   );
 };
 

@@ -1,11 +1,12 @@
 import TicketCard from './TicketCard';
-import { TicketData } from '../interfaces/TicketData';
-import { ApiMessage } from '../interfaces/ApiMessage';
+import { TicketData } from '../interfaces/TicketData.ts';
+import { ApiMessage } from '../interfaces/ApiMessage.ts';
+import { ApiResponse } from '../interfaces/ApiResponse';
 
 interface SwimlaneProps {
   title: string;
   tickets: TicketData[];
-  deleteTicket: (ticketId: number) => Promise<ApiMessage>
+  deleteTicket: (ticketId: number) => Promise<ApiResponse<ApiMessage>>;
 }
 
 const Swimlane = ({ title, tickets, deleteTicket }: SwimlaneProps) => {
@@ -25,8 +26,8 @@ const Swimlane = ({ title, tickets, deleteTicket }: SwimlaneProps) => {
   return (
     <div className={`swimlane ${getStatusClass(title)}`}>
       <h2>{title}</h2>
-      {tickets.map(ticket => (
-        <TicketCard 
+      {tickets.map((ticket) => (
+        <TicketCard
           key={ticket.id}
           ticket={ticket}
           deleteTicket={deleteTicket}

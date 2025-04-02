@@ -1,6 +1,8 @@
 import Auth from '../utils/auth';
+import { UserData } from '../interfaces/UserData.ts';
+import { ApiResponse } from '../interfaces/ApiResponse';
 
-const retrieveUsers = async () => {
+const retrieveUsers = async (): Promise<ApiResponse<UserData[]>> => {
   try {
     const response = await fetch('/api/users', {
       headers: {
@@ -8,18 +10,19 @@ const retrieveUsers = async () => {
         Authorization: `Bearer ${Auth.getToken()}`
       }
     });
+
     const data = await response.json();
 
-    if(!response.ok) {
-      throw new Error('invalid user API response, check network tab!');
+    if (!response.ok) {
+      console.warn('User fetch failed:', data);
+      return { success: false, message: 'Failed to retrieve users.' };
     }
 
-    return data;
-
-  } catch (err) { 
-    console.log('Error from data retrieval:', err);
-    return [];
+    return { success: true, data };
+  } catch (err) {
+    console.error('Error retrieving users:', err);
+    return { success: false, message: 'An unexpected error occurred while fetching users.' };
   }
-}
+};
 
 export { retrieveUsers };

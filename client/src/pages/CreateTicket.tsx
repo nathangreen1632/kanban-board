@@ -1,8 +1,8 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createTicket } from '../api/ticketAPI';
-import { TicketData } from '../interfaces/TicketData';
-import { UserData } from '../interfaces/UserData';
+import { TicketData } from '../interfaces/TicketData.ts';
+import { UserData } from '../interfaces/UserData.ts';
 import { retrieveUsers } from '../api/userAPI';
 
 const CreateTicket = () => {
@@ -21,18 +21,26 @@ const CreateTicket = () => {
 
   const [users, setUsers] = useState<UserData[] | undefined>([]);
 
-  const getAllUsers = async () => {
+  const getAllUsers = async (): Promise<void> => {
     try {
-      const data = await retrieveUsers();
-      setUsers(data);
+      const response = await retrieveUsers();
+      if (response.success && response.data) {
+        setUsers(response.data);
+      } else {
+        console.warn('User data not available:', response.message);
+      }
     } catch (err) {
-      console.error('Failed to retrieve user info', err);
+      console.error('Failed to retrieve user info:', err);
     }
   };
 
+
   useEffect(() => {
-    getAllUsers();
+    (async () => {
+      await getAllUsers();
+    })();
   }, []);
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -59,7 +67,6 @@ const CreateTicket = () => {
   }
 
   return (
-    <>
       <div className='container'>
         <form className='form' onSubmit=
         {handleSubmit}>
@@ -68,14 +75,14 @@ const CreateTicket = () => {
           <textarea 
             id='tName'
             name='name'
-            value={newTicket?.name || ''}
+            value={newTicket?.name ?? ''}
             onChange={handleTextAreaChange}
             />
           <label htmlFor='tStatus'>Ticket Status</label>
           <select 
             name='status' 
             id='tStatus'
-            value={newTicket?.status || ''}
+            value={newTicket?.status ?? ''}
             onChange={handleTextChange}
           >
             <option value='Todo'>Todo</option>
@@ -86,13 +93,13 @@ const CreateTicket = () => {
           <textarea 
             id='tDescription'
             name='description'
-            value={newTicket?.description || ''}
+            value={newTicket?.description ?? ''}
             onChange={handleTextAreaChange}
           />
           <label htmlFor='tUserId'>User's ID</label>
           <select
             name='assignedUserId'
-            value={newTicket?.assignedUserId || ''}
+            value={newTicket?.assignedUserId ?? ''}
             onChange={handleUserChange}
           >
             {users ? users.map((user) => {
@@ -105,7 +112,7 @@ const CreateTicket = () => {
             <textarea 
               id='tUserId'
               name='assignedUserId'
-              value={newTicket?.assignedUserId || 0}
+              value={newTicket?.assignedUserId ?? 0}
               onChange={handleTextAreaChange}
             />
             )
@@ -114,7 +121,6 @@ const CreateTicket = () => {
           <button type='submit' onSubmit={handleSubmit}>Submit Form</button>
         </form>
       </div>
-    </>
   )
 };
 

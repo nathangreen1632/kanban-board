@@ -19,18 +19,18 @@
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Supplemental Docs](#supplemental-docs)
-  - [Tests](#tests)
-  - [License](#license)
-  - [Questions](#questions)
-  - [Deployed Page](#deployed-page)
+    - [Tests](#tests)
+    - [License](#license)
+    - [Questions](#questions)
+    - [Deployed Page](#deployed-page)
 </details>
 
 ---
 
 ## About
-Krazy Kanban Board is a streamlined task management application designed to help individuals and teams efficiently manage their workflows. With an intuitive Kanban-style interface, users can create tasks, assign them to specific categories, and move them across columns manually to track progress visually. The platform enables real-time collaboration, making it easy for team members to stay updated on project developments.
+Krazy Kanban Board is a robust full-stack task management application powered by React, Node.js, and PostgreSQL. It allows users to create, manage, and categorize tasks in a drag-and-drop Kanban layout. With integrated authentication, protected routes, and real-time state updates via API, the app is ideal for collaborative or personal workflow management.
 
-The board supports customizable task categories, empowering users to define their workflow structure to fit their unique needs. Real-time updates ensure that all changes are instantly reflected for every team member, fostering a more organized and productive work environment. Whether for personal task tracking or enterprise-level project management, Krazy Kanban Board provides a flexible and scalable solution to streamline your work.
+The platform features modular context management (via `UserContext`) for global user state, JWT-based authentication with persistent tokens, and seamless navigation using React Router v6. The app is deployed on **Render (backend)** and **Netlify (frontend)** with client-side routing correctly managed through Express fallback routing.
 
 <div style="text-align: right;">
   <a href="#top">
@@ -42,23 +42,23 @@ ___
 
 
 ## Key Features
-**Customizable Columns** – Add, remove, and rename task categories to tailor the board to specific project needs.
+**Context-Based User State** – Global login state managed with React Context + JWT token decoding
 
-**Task Management** – Users can create, update, and delete tasks with detailed descriptions and priority levels.
+**Protected Routing** – Uses React Router with authentication gating to restrict access to protected pages
 
-**Persistent Storage** – Saves tasks and boards in a PostgreSQL database, ensuring data consistency and availability.
+**User Login System** – Custom login API endpoint returns JWT stored in localStorage and parsed via `jwt-decode`
 
-**Real-Time Updates** – Keeps all users in sync with WebSockets, allowing instant visibility of changes across the board.
+**Kanban Swimlanes** – Visual display of tasks filtered by status (Todo, In Progress, Done)
 
-**User Roles & Permissions** – Admins can control user access levels, restricting modifications to assigned team members.
+**Database Sync** – Sequelize ORM manages PostgreSQL schema, with relational models for Users and Tickets
 
-**Analytics Dashboard** – Provides insights on task progress, completion rates, and overall project efficiency.
+**Persistent Ticket Management** – Add, edit, and delete tickets via protected API endpoints
 
-**Notifications System** – Alerts users when tasks are updated or assigned, keeping everyone informed.
+**Typesafe Codebase** – Full TypeScript support across backend and frontend, with strict types and reusable interfaces
 
-**Responsive UI** – A seamless user experience on both desktop and mobile devices, ensuring accessibility anywhere.
+**Custom Express Catch-All** – Handles React Router client-side navigation to avoid `Cannot GET /login` on refresh
 
-**User Authentication** – Secure login with JWT-based authentication to protect user data and session integrity.
+**Production-Ready Deployment** – Works fully in both local dev and deployed environments with server/static fallbacks
 
 <div style="text-align: right;">
   <a href="#top">
@@ -69,30 +69,30 @@ ___
 ___
 
 ## Technologies Used
-### **Frontend:** 
-  <br>&nbsp; <span id="html5"> [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://html.com/html5)</span>
-  <br>&nbsp; <span id="css-3">[![CSS 3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3schools.com/css/css_intro.asp)</span>
-  <br>&nbsp; <span id="typescript">[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)</span>
-  <br>&nbsp; <span id="react">[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev)</span>
-  <br>&nbsp; <span id="vite">[![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vite.dev/)</span>
+### **Frontend:**
+<br>&nbsp; [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://html.com/html5)
+<br>&nbsp; [![CSS 3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3schools.com/css/css_intro.asp)
+<br>&nbsp; [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+<br>&nbsp; [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev)
+<br>&nbsp; [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vite.dev/)
 
-### **Backend:** 
-  <br>&nbsp; <span id="node.js">[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)</span>
-  <br>&nbsp; <span id="express">[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com)</span>
-  <br>&nbsp; <span id="react-router">[![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/)</span>
-  <br>&nbsp; <span id="npm">[![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com)</span>
+### **Backend:**
+<br>&nbsp; [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
+<br>&nbsp; [![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com)
+<br>&nbsp; [![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/)
+<br>&nbsp; [![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com)
 
-### **Database:** 
-  <br>&nbsp; <span id="postgresql">[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org)</span>
-  <br>&nbsp; <span id="sequelize">[![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)](https://sequelize.org)</span>
+### **Database:**
+<br>&nbsp; [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org)
+<br>&nbsp; [![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)](https://sequelize.org)
 
-### **Authentication:** 
-  <br>&nbsp; <span id="jwt">[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](https://jwt.io)</span>
-    <br>&nbsp; <span id="bcrypt">[![bcrypt](https://img.shields.io/badge/bcrypt-000000?style=for-the-badge&logo=bcrypt&logoColor=white)](https://www.npmjs.com/package/bcrypt)</span>
+### **Authentication:**
+<br>&nbsp; [![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](https://jwt.io)
+<br>&nbsp; [![bcrypt](https://img.shields.io/badge/bcrypt-000000?style=for-the-badge&logo=bcrypt&logoColor=white)](https://www.npmjs.com/package/bcrypt)
 
 ### **Deployment:**
-  <br>&nbsp; <span id="render">[![Render](https://img.shields.io/badge/Render-333?style=for-the-badge&logo=render&logoColor=white)](https://render.com)</span>
-  <br>&nbsp; <span id="netlify">[![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com)</span>
+<br>&nbsp; [![Render](https://img.shields.io/badge/Render-333?style=for-the-badge&logo=render&logoColor=white)](https://render.com)
+<br>&nbsp; [![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com)
 
 <div style="text-align: right;">
   <a href="#top">
@@ -115,14 +115,16 @@ git clone https://github.com/nathangreen1632/kanban-board.git
 cd kanban-board
 ```
 
-### Install Dependencies
+### Install Dependencies (root + client + server)
 ```sh
 npm install
+cd client && npm install
+cd ../server && npm install
 ```
 
 ### Set Up Environment Variables
-Create a `.env` file in the root directory and add:
-```sh
+Create a `.env` file in the `server/` directory and add:
+```env
 DATABASE_URL=postgres://your_db_user:your_db_password@localhost:5432/kanban_db
 JWT_SECRET_TOKEN=your_secret_key
 ```
@@ -146,17 +148,21 @@ ___
 ```sh
 npm run dev
 ```
-This will start both the frontend and backend using concurrently.
+This runs frontend (Vite) and backend (Express) concurrently.
 
-### Build Commands
-- **Frontend:**
-  ```sh
-  npm run build
-  ```
-- **Backend:**
-  ```sh
-  npm run start
-  ```
+### Build Production Frontend
+```sh
+cd client && npm run build
+```
+Then serve it with Express. Confirm Express static fallback is set for `/dist`.
+
+### Backend Start (after build)
+```sh
+cd server && npm run start
+```
+
+### Access App
+Open [http://localhost:3001](http://localhost:3001) — React Router routes like `/login` will now work directly!
 
 <div style="text-align: right;">
   <a href="#top">
@@ -167,49 +173,18 @@ This will start both the frontend and backend using concurrently.
 ___
 
 ## <span id="contributing"> Contributing </span>
-Contributions to this project are highly encouraged and appreciated. If you want to improve the project or introduce new features, follow the structured workflow below to ensure a smooth collaboration process.
+Contributions are welcome and appreciated! Please follow this Git-style workflow:
 
-### **<span id="contributing-workflow">Contributing Workflow:</span>**
-1. **<span> Fork the Repository </span>**:
-   Navigate to the original GitHub repository page and click on the 'Fork' button at the top-right corner. This creates a personal copy of the project under your GitHub account.
+### Workflow:
+1. **Fork the repo**
+2. **Clone your fork**
+3. **Create a new branch**
+4. **Write code & commit**
+5. **Push your branch**
+6. **Open a Pull Request (PR)**
+7. **Review, update, and merge**
 
-
-2. **<span> Clone Your Fork </span>**:
-   Clone the repository to your local machine using the following command:
-    ```bash
-    git clone https://github.com/YOUR_USERNAME/applicant-manager.git
-    cd applicant-manager
-    ```
-
-3. **<span> Create a New Branch </span>**:
-   Create a new branch to work on your changes. naming your branch appropriately helps in identifying its purpose.
-    ```bash
-    git checkout -b feature-branch
-    ```
-
-4. **<span> Make Your Changes </span>**:
-   Implement your desired improvements, whether it's fixing bugs, enhancing features, or improving documentation. Ensure you follow the project's coding standards and guidelines.
-
-
-5. **<span> Commit Your Changes </span>**:
-   Stage and commit your modifications with a meaningful message:
-    ```bash
-    git add -A
-    git commit -m "Add feature: Detailed description of your changes made"
-    ```
-
-6. **<span> Push Your Fork </span>**:
-   Push your changes to your forked repository on GitHub:
-    ```bash
-    git push origin feature-branch
-    ```
-
-7. **<span> Submit a Pull Request </span>**:
-   Go to the original repository and click on `Pull Requests`. Click `New Pull Request`, select your feature branch, and provide a comprehensive description of your changes, including the purpose and impact.
-
-
-8. **<span> Review and Collaborate </span>**:
-   Your pull request will be reviewed by project maintainers to ensure it meets quality standards and aligns with project goals. Constructive feedback will be provided if necessary. Once approved, it will be merged into the main branch.
+Use clear commit messages and structured PR descriptions.
 
 <div style="text-align: right;">
   <a href="#top">
@@ -222,19 +197,20 @@ ___
 ## Supplemental Docs
 
 ### Tests
-No tests available at this time. 
+Tests coming soon. Testing structure will include Jest, Supertest (backend), and React Testing Library (frontend).
 
 ### License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+MIT License. See the [LICENSE](LICENSE) file.
 
 ### Questions
-For any inquiries, reach out via [GitHub](https://github.com/nathangreen1632).
+Contact via [GitHub](https://github.com/nathangreen1632).
 
 ### Deployed Page
-Check out the live version: **[Krazy Kanban Board](https://your-deployed-link.com)**
+Live App: **[Krazy Kanban Board](https://your-deployed-link.com)**
 
 <div style="text-align: right;">
   <a href="#top">
     <img src="https://img.shields.io/badge/Back%20to%20Top-%E2%86%91-royalblue" alt="Back to Top">
   </a>
 </div>
+

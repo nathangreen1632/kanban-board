@@ -20,27 +20,13 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
     children: [
-      {
-        index: true,
-        element: <Board />
-      },
-      {
-        path: '/edit',
-        element: <EditTicket />
-      },
-      {
-        path: '/create',
-        element: <CreateTicket />
-      },
-      {
-        path: '/login',
-        element: <Login />
-      }
-    ]
-  }
+      { index: true, element: <Board /> },
+      { path: 'edit', element: <EditTicket /> },
+      { path: 'create', element: <CreateTicket /> },
+      { path: 'login', element: <Login /> },
+    ],
+  },
 ]);
 
-const rootElement = document.getElementById('root');
-if (rootElement) {
-  ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
-}
+const root = document.getElementById('root') as HTMLElement;
+ReactDOM.createRoot(root).render(<RouterProvider router={router} />);

@@ -8,17 +8,22 @@ import ErrorPage from './pages/ErrorPage.tsx';
 import EditTicket from './pages/EditTicket.tsx';
 import CreateTicket from './pages/CreateTicket.tsx';
 import Login from './pages/Login.tsx';
+import { UserProvider } from './context/UserProvider.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: (
+      <UserProvider>
+        <App />
+      </UserProvider>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         element: <Board />
-      }, 
+      },
       {
         path: '/edit',
         element: <EditTicket />
@@ -33,7 +38,7 @@ const router = createBrowserRouter([
       }
     ]
   }
-])
+]);
 
 const rootElement = document.getElementById('root');
 if (rootElement) {

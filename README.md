@@ -6,7 +6,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-![Deployed](https://img.shields.io/badge/deployed-Netlify%20%7C%20Render-orange)
+![Deployed](https://img.shields.io/badge/deployed-Render-limegreen)
 
 ## Table of Contents
 <details>

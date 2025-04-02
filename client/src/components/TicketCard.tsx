@@ -16,32 +16,32 @@ const TicketCard = ({ ticket, deleteTicket }: TicketCardProps) => {
       const response = await deleteTicket(ticketId);
       if (!response.success) {
         console.error('Failed to delete ticket:', response.message);
-        // You can optionally show an alert or message in the UI
       }
     }
   };
 
   return (
-    <div className="ticket-card">
-      <h3>{ticket.name}</h3>
-      <p>{ticket.description}</p>
-      <p>{ticket.assignedUser?.username}</p>
-      <Link
-        to="/edit"
-        state={{ id: ticket.id }}
-        type="button"
-        className="editBtn"
-      >
-        Edit
-      </Link>
-      <button
-        type="button"
-        value={String(ticket.id)}
-        onClick={handleDelete}
-        className="deleteBtn"
-      >
-        Delete
-      </button>
+    <div className="text-center bg-gray-400 border border-black p-4 rounded-md shadow-sm">
+      <h3 className="text-lg font-semibold mb-1">{ticket.name}</h3>
+      <p className="text-sm mb-1">{ticket.description}</p>
+      <p className="text-sm font-medium text-black mb-3">{ticket.assignedUser?.username}</p>
+      <div className="flex justify-center gap-3">
+        <Link
+          to="/edit"
+          state={{ id: ticket.id }}
+          className="bg-black text-white px-4 py-1 rounded-md text-sm hover:bg-neutral-300 hover:text-black transition"
+        >
+          Edit
+        </Link>
+        <button
+          type="button"
+          value={String(ticket.id)}
+          onClick={handleDelete}
+          className="bg-black text-white px-4 py-1 rounded-md text-sm hover:bg-neutral-300 hover:text-black transition"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

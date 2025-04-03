@@ -71,6 +71,10 @@ const Board = () => {
         <div className="flex items-center justify-center w-full min-h-[1000px]">
           <h1 className="text-5xl font-semibold text-center">
             Login to create & view tickets
+            <br />
+            <h2 className="text-2xl text-gray-500">
+              Username: JollyGuru | Password: password
+            </h2>
           </h1>
         </div>
       ) : (
